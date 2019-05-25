@@ -9,7 +9,7 @@ In a fresh install of ArchLinux you need to download **git** with ```sudo pacman
 Now **clone** the repo with: 
 ```
 git clone https://github.com/FrancescoXD/UDesktop.git
-cd iNSTALL3R
+cd UDesktop
 chmod 777 installer.sh
 ./installer.sh
 ```
