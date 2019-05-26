@@ -26,24 +26,28 @@ read desktopEnvironment
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
 	echo "Installing GNOME with display manager LXDM..."
+	pacman -Syu
 	pacman -S xorg xorg-server gnome gnome-extra lxdm
 	# Enable display manager
 	systemctl enable lxdm
 	selectedDE=true
 elif [ $desktopEnvironment == l ]; then
 	echo "Installing LXDE with display manager LXDM..."
+	pacman -Syu
 	pacman -S xorg xorg-server lxde lxde-common lxsession desktop-file-utils gamin lxdm
 	# Enable display manager
 	systemctl enable lxdm
 	selectedDE=true
 elif [ $desktopEnvironment == k ]; then
 	echo "Installing KDE Plasma with display manager SDDM..."
+	pacman -Syu
 	pacman -S xorg xorg-server plasma sddm kde-applications lxdm
 	# Enable display manager
 	systemctl enable sddm
 	selectedDE=true
 elif [ $desktopEnvironment == x ]; then
 	echo "Installing XFCE with display manager LXDM..."
+	pacman -Syu
 	pacman -S xorg xorg-server xfce4 xfce4-goodies lxdm
 	# Enable display manager
 	systemctl enable lxdm
