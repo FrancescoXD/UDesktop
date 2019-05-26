@@ -52,7 +52,7 @@ else
 	echo "Error: you did not choose a valid desktop environment!"
 fi
 
-# Download extra stuff
+# Downloading pulseaudio
 if [ $selectedDE == "true" ]; then
 	echo "Installing extra stuff..."
 	pacman -S pulseaudio pulseaudio-alsa
