@@ -18,6 +18,7 @@ echo ""
 # Starting
 echo "What desktop environment (DE) do you need?"
 echo "g - GNOME"
+echo "d - Deepin"
 echo "l - LXDE"
 echo "k - KDE Plasma"
 echo "x - XFCE"
@@ -52,6 +53,15 @@ elif [ $desktopEnvironment == x ]; then
 	# Enable display manager
 	systemctl enable lxdm
 	selectedDE=true
+elif [ $desktopEnvironment == d ]; then
+	echo "Installing Deepin with display manager LXDM..."
+	pacman -Syu
+	pacman -S xorg xorg-server deepin deepin-extra networkmanager lxdm
+	# Enable display manager
+	systemctl enable lxdm
+	# Enable NetworkManager
+	systemctl enable NetworkManager
+	selectedDE=true
 else
 	echo "Error: you did not choose a valid desktop environment!"
 fi
@@ -64,5 +74,6 @@ if [ $selectedDE == "true" ]; then
 	echo "Thanks for using this script!"
 fi
 
+# Finally
 echo ""
-echo "Thanks for using this script!"
+echo "Thanks for using this script! Now you have to reboot."
