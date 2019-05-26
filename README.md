@@ -8,8 +8,8 @@ The only requirements that the script need is a **root** or **sudo** user.
 In a fresh install of ArchLinux you need to download **git** with ```sudo pacman -S git```.
 Now **clone** the repo with: 
 ```
-git clone https://github.com/FrancescoXD/UDesktop.git
-cd UDesktop
-chmod 777 installer.sh
-./installer.sh
+$ git clone https://github.com/FrancescoXD/UDesktop.git
+$ cd UDesktop
+$ chmod 777 installer.sh
+$ ./installer.sh
 ```
