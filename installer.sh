@@ -26,8 +26,8 @@ read desktopEnvironment
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
 	echo "Installing GNOME with display manager LXDM..."
-	echo "Note: default terminal is broken, so use termite!"
-	pacman -S xorg xorg-server gnome gnome-extra termite lxdm
+	echo "Note: default terminal is broken."
+	pacman -S xorg xorg-server gnome gnome-extra lxdm
 	# Enable display manager
 	systemctl enable lxdm
 	selectedDE=true
@@ -56,15 +56,7 @@ fi
 # Download extra stuff
 if [ $selectedDE == "true" ]; then
 	echo "Installing extra stuff..."
-	pacman -S vlc pulseaudio pulseaudio-alsa firefox termite gimp htop git vim
-	echo "Do you want YAY for AUR (recommended)? (yes/no)
-	read installYay
-	if [ $installYay == yes ]; then
-		git clone https://aur.archlinux.org/yay.git
-		cd yay
-		makepkg -si
-		cd ..
-	fi
+	pacman -S pulseaudio pulseaudio-alsa
 	echo ""
 	echo "Thanks for using this script!"
 fi
