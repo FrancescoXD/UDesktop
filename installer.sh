@@ -26,7 +26,6 @@ read desktopEnvironment
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
 	echo "Installing GNOME with display manager LXDM..."
-	echo "Note: default terminal is broken."
 	pacman -S xorg xorg-server gnome gnome-extra lxdm
 	# Enable display manager
 	systemctl enable lxdm
