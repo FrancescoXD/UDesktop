@@ -42,7 +42,7 @@ elif [ $desktopEnvironment == l ]; then
 elif [ $desktopEnvironment == k ]; then
 	echo "Installing KDE Plasma with display manager SDDM..."
 	pacman -Syu
-	pacman -S xorg xorg-server plasma sddm kde-applications lxdm
+	pacman -S xorg xorg-server plasma sddm kde-applications
 	# Enable display manager
 	systemctl enable sddm
 	selectedDE=true
@@ -56,11 +56,9 @@ elif [ $desktopEnvironment == x ]; then
 elif [ $desktopEnvironment == d ]; then
 	echo "Installing Deepin with display manager LXDM..."
 	pacman -Syu
-	pacman -S xorg xorg-server deepin deepin-extra networkmanager lxdm
+	pacman -S xorg xorg-server deepin deepin-extra lxdm
 	# Enable display manager
 	systemctl enable lxdm
-	# Enable NetworkManager
-	systemctl enable NetworkManager
 	selectedDE=true
 else
 	echo "Error: you did not choose a valid desktop environment!"
