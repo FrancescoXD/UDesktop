@@ -13,7 +13,7 @@ printf "
                                        |_|    
 "
 echo ""
-echo "Welcome, this is a complete desktop environment installer for ArchLinux! See my github profile: https://github.com/FrancescoXD"
+echo "Welcome, this is a simple desktop environment or window manager installer for ArchLinux! See my github profile: https://github.com/FrancescoXD"
 echo ""
 # Starting
 echo "What desktop environment (DE) do you need?"
@@ -22,43 +22,40 @@ echo "d - Deepin"
 echo "l - LXDE"
 echo "k - KDE Plasma"
 echo "x - XFCE"
+echo "What tiling window manager (TWM) do you need?"
+echo "i - i3wm"
 read desktopEnvironment
 
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
-	echo "Installing GNOME with display manager LXDM..."
-	pacman -Syu
-	pacman -S xorg xorg-server gnome gnome-extra lxdm
+	echo "Installing GNOME with display manager GDM..."
+	pacman -Syu xorg gnome gnome-extra
 	# Enable display manager
-	systemctl enable lxdm
-	selectedDE=true
-elif [ $desktopEnvironment == l ]; then
-	echo "Installing LXDE with display manager LXDM..."
-	pacman -Syu
-	pacman -S xorg xorg-server lxde lxde-common lxsession desktop-file-utils gamin lxdm
-	# Enable display manager
-	systemctl enable lxdm
+	systemctl enable gdm
 	selectedDE=true
 elif [ $desktopEnvironment == k ]; then
-	echo "Installing KDE Plasma with display manager SDDM..."
-	pacman -Syu
-	pacman -S xorg xorg-server plasma sddm kde-applications
+	echo "Installing Plasma with display manager SDDM..."
+	pacman -Syu plasma-meta sddm kde-applications
 	# Enable display manager
 	systemctl enable sddm
 	selectedDE=true
 elif [ $desktopEnvironment == x ]; then
 	echo "Installing XFCE with display manager LXDM..."
-	pacman -Syu
-	pacman -S xorg xorg-server xfce4 xfce4-goodies lxdm
+	pacman -Syu xorg xfce4 xfce4-goodies lightdm
 	# Enable display manager
-	systemctl enable lxdm
+	systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == d ]; then
-	echo "Installing Deepin with display manager LXDM..."
-	pacman -Syu
-	pacman -S xorg xorg-server deepin deepin-extra lxdm
+	echo "Installing Deepin with display manager LightDM..."
+	pacman -Syu xorg deepin deepin-extra lightdm-gtk-greeter
 	# Enable display manager
-	systemctl enable lxdm
+	systemctl enable lightdm
+	selectedDE=true
+elif [ $desktopEnvironment == i ]; then
+	echo "Installing i3wm with display manager ..."
+	pacman -Syu xorg i3 lightdm lightdm-gtk-greeter
+	# Enable display manager
+	systemctl enable lightdm
 	selectedDE=true
 else
 	echo "Error: you did not choose a valid desktop environment!"
