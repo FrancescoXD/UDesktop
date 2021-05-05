@@ -19,11 +19,12 @@ echo ""
 echo "What desktop environment (DE) do you need?"
 echo "g - GNOME"
 echo "d - Deepin"
-echo "l - LXDE"
 echo "k - KDE Plasma"
 echo "x - XFCE"
 echo "What tiling window manager (TWM) do you need?"
 echo "i - i3wm"
+echo "s - Sway (Wayland)"
+echo "=> "
 read desktopEnvironment
 
 # Check desktop environment
@@ -52,8 +53,14 @@ elif [ $desktopEnvironment == d ]; then
 	systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == i ]; then
-	echo "Installing i3wm with display manager ..."
+	echo "Installing i3wm with display manager LightDM..."
 	pacman -Syu xorg i3 lightdm lightdm-gtk-greeter
+	# Enable display manager
+	systemctl enable lightdm
+	selectedDE=true
+elif [ $desktopEnvironment == s ]; then
+	echo "Installing Sway with display manager LightDM..."
+	pacman -Syu sway swaylock swayidle dmenu alacritty lightdm lightdm-gtk-greeter
 	# Enable display manager
 	systemctl enable lightdm
 	selectedDE=true
