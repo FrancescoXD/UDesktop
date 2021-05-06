@@ -10,6 +10,6 @@ Now **clone** the repo with:
 ```
 $ git clone https://github.com/FrancescoXD/UDesktop.git
 $ cd UDesktop
-$ chmod 777 installer.sh
+$ chmod +x installer.sh
 $ ./installer.sh
 ```
