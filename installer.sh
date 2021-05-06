@@ -45,28 +45,22 @@ elif [ $desktopEnvironment == k ]; then
 	selectedDE=true
 elif [ $desktopEnvironment == x ]; then
 	echo "Installing XFCE with display manager LXDM..."
-	sudo pacman -Syu --noconfirm xorg xfce4 xfce4-goodies lightdm
+	sudo pacman -Syu --noconfirm xorg xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
 	# Enable display manager
 	sudo systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == d ]; then
 	echo "Installing Deepin with display manager LightDM..."
-	sudo pacman -Syu --noconfirm xorg deepin deepin-extra lightdm-gtk-greeter
+	sudo pacman -Syu --noconfirm xorg deepin deepin-extra lightdm lightdm-gtk-greeter
 	# Enable display manager
 	sudo systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == i ]; then
-	echo "Installing i3wm with display manager Ly..."
+	echo "Installing i3wm with display manager LightDM..."
 	echo "Check https://github.com/nullgemm/ly for more info."
-	sudo pacman -Syu --noconfirm xorg i3
+	sudo pacman -Syu --noconfirm xorg i3 lightdm lightdm-gtk-greeter
 	# Download and install Ly
-	git clone https://github.com/nullgemm/ly.git
-	cd ly
-	make github
-	make
-	sudo make install
-	# Enable display manager
-	sudo systemctl enable ly.service
+	sudo systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == s ]; then
 	echo "Installing Sway with display manager Ly..."
