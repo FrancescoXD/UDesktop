@@ -30,39 +30,53 @@ read desktopEnvironment
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
 	echo "Installing GNOME with display manager GDM..."
-	pacman -Syu xorg gnome gnome-extra
+	sudo pacman -Syu --noconfirm xorg gnome gnome-extra
 	# Enable display manager
-	systemctl enable gdm
+	sudo systemctl enable gdm
 	selectedDE=true
 elif [ $desktopEnvironment == k ]; then
 	echo "Installing Plasma with display manager SDDM..."
-	pacman -Syu plasma-meta sddm kde-applications
+	sudo pacman -Syu --noconfirm plasma-meta sddm kde-applications
 	# Enable display manager
-	systemctl enable sddm
+	sudo systemctl enable sddm
 	selectedDE=true
 elif [ $desktopEnvironment == x ]; then
 	echo "Installing XFCE with display manager LXDM..."
-	pacman -Syu xorg xfce4 xfce4-goodies lightdm
+	sudo pacman -Syu --noconfirm xorg xfce4 xfce4-goodies lightdm
 	# Enable display manager
-	systemctl enable lightdm
+	sudo systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == d ]; then
 	echo "Installing Deepin with display manager LightDM..."
-	pacman -Syu xorg deepin deepin-extra lightdm-gtk-greeter
+	sudo pacman -Syu --noconfirm xorg deepin deepin-extra lightdm-gtk-greeter
 	# Enable display manager
-	systemctl enable lightdm
+	sudo systemctl enable lightdm
 	selectedDE=true
 elif [ $desktopEnvironment == i ]; then
-	echo "Installing i3wm with display manager LightDM..."
-	pacman -Syu xorg i3 lightdm lightdm-gtk-greeter
+	echo "Installing i3wm with display manager Ly..."
+	echo "Check https://github.com/nullgemm/ly for more info."
+	sudo pacman -Syu --noconfirm xorg i3
+	# Download and install Ly
+	git clone https://github.com/nullgemm/ly.git
+	cd ly
+	make github
+	make
+	sudo make install
 	# Enable display manager
-	systemctl enable lightdm
+	sudo systemctl enable ly.service
 	selectedDE=true
 elif [ $desktopEnvironment == s ]; then
-	echo "Installing Sway with display manager LightDM..."
-	pacman -Syu sway swaylock swayidle dmenu alacritty lightdm lightdm-gtk-greeter
+	echo "Installing Sway with display manager Ly..."
+	echo "Check https://github.com/nullgemm/ly for more info."
+	sudo pacman -Syu --noconfirm xorg sway swaylock swayidle dmenu alacritty
+	# Download and install Ly
+	git clone https://github.com/nullgemm/ly.git
+	cd ly
+	make github
+	make
+	sudo make install
 	# Enable display manager
-	systemctl enable lightdm
+	sudo systemctl enable ly.service
 	selectedDE=true
 else
 	echo "Error: you did not choose a valid desktop environment!"
@@ -71,11 +85,11 @@ fi
 # Downloading pulseaudio
 if [ $selectedDE == "true" ]; then
 	echo "Installing extra stuff..."
-	pacman -S pulseaudio pulseaudio-alsa
+	pacman -S --noconfirm pulseaudio pulseaudio-alsa
 	echo ""
-	echo "Thanks for using this script!"
+	echo "Thanks for using this script! Now you have to reboot."
 fi
 
 # Finally
 echo ""
-echo "Thanks for using this script! Now you have to reboot."
+echo "Thanks for using this script!"
