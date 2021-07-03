@@ -27,9 +27,6 @@ echo "s - Sway (Wayland)"
 echo "=> "
 read desktopEnvironment
 
-# Install git
-sudo pacman -Sy git
-
 # Check desktop environment
 if [ $desktopEnvironment == g ]; then
 	echo "Installing GNOME with display manager GDM..."
